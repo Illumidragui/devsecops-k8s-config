@@ -1,0 +1,29 @@
+name: CI - Config repo
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  checkov-scan:
+      name: Checkov — manifest security scan
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Install Helm
+          uses: azure/setup-helm@v3
+
+        - name: Install Checkov
+          run: pip install checkov
+
+        - name: Render Helm templates
+          run: helm template flask-release ./flask-app > rendered.yaml
+
+        - name: Run Checkov
+          run: |
+            checkov -f rendered.yaml \
+              --framework kubernetes \
+              --soft-fail-on MEDIUM \
+              --hard-fail-on HIGH,CRITICAL
