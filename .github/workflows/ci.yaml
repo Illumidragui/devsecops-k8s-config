@@ -9,10 +9,9 @@ jobs:
   checkov-scan:
       name: Checkov — manifest security scan
       runs-on: ubuntu-latest
-      security:
-        permissions:
-          contents: read
-          security-events: write
+      permissions:
+        contents: read
+        security-events: write
       steps:
         - uses: actions/checkout@v4
 
