@@ -34,8 +34,7 @@ jobs:
               --soft-fail-on MEDIUM \
               --hard-fail-on HIGH,CRITICAL \
               --output sarif \
-              --output-file-path ./checkov-results/checkov.sarif \
-              --include-all-checkov-attributes
+              --output-file-path ./checkov-results/checkov.sarif
             
         - name: Enrich SARIF with severity
           run: python3 .github/scripts/enrich_sarif.py ./checkov-results/checkov.sarif
