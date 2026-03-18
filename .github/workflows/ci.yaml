@@ -25,7 +25,7 @@ jobs:
           run: helm template flask-release ./flask-app > rendered.yaml
 
         - name: Create output-Checkov directory
-          run: mkdir -p checkov-results
+          run: mkdir -p ./checkov-results
 
         - name: Run Checkov
           run: |
