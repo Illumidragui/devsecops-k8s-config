@@ -32,7 +32,7 @@ jobs:
             checkov -f rendered.yaml \
               --framework kubernetes \
               --soft-fail-on MEDIUM \
-              --hard-fail-on HIGH,CRITICAL \
+              --hard-fail-on HIGH,CRITICAL
               --output sarif \
               --output-file-path ./checkov-results/checkov.sarif
             
