@@ -6,6 +6,18 @@ on:
     branches: [ main ]
     
 jobs:
+  helm-lint:
+    name: Helm lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+
+      - name: Lint chart
+        run: helm lint ./flask-app
+        
   checkov-scan:
       name: Checkov — manifest security scan
       runs-on: ubuntu-latest
